@@ -1,3 +1,5 @@
+#pragma once
+
 #include "tuple.h"
 
 class vector : public tuple

@@ -12,8 +12,9 @@ bool isEq(float a, float b)
 
 int main()
 {
-   point a1 = { 1, -2, 3};
-   std::cout << util::magnitude(a1) << std::endl;
+   vector a1 = { 1, 2, 3};
+   vector a2 = { 2, 3, 4 };
+   util::cross(a2,a1).print();
    getchar();
    return 0;
 }

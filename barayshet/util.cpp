@@ -59,8 +59,32 @@ tuple& util::scale(tuple& m, const float a)
    return m;
 }
 
-float util::magnitude(const tuple& m)
+float util::magnitude(const vector& m)
 {
    return sqrt(pow(m.getX(), 2) + pow(m.getY(), 2) + pow(m.getZ(), 2));
+}
+
+vector& util::normalize(vector& m)
+{
+   float tupleMag = magnitude(m);
+   m.setX(m.getX() / tupleMag);
+   m.setY(m.getY() / tupleMag);
+   m.setZ(m.getZ() / tupleMag);
+
+   return m;
+}
+
+float util::dot(const vector& m, const vector& n)
+{
+   return m.getX()*n.getX() + m.getY()*n.getY() + m.getZ()*n.getZ();
+}
+
+vector util::cross(const vector& m, const vector& n)
+{
+
+   return vector(
+            m.getY()*n.getZ() - m.getZ()*n.getY()
+          , m.getZ()*n.getX() - m.getX()*n.getZ()
+          , m.getX()*n.getY() - m.getY()*n.getX());
 }
 

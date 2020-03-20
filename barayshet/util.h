@@ -1,5 +1,6 @@
 
 #include "tuple.h"
+#include "vector.h"
 
 //utility functions to operate on tuples
 //this and the tuple class itself can be optimized
@@ -19,7 +20,14 @@ public:
    static tuple& scale(const float a, tuple& m);
    static tuple& scale(tuple& m, const float a);
 
-   static float magnitude(const tuple& m);
+   static float magnitude(const vector& m);
+   static vector& normalize(vector& m);
+
+   //dot product
+   static float dot(const vector& m, const vector& n);
+   
+   //cross product, too lazy to optimize this now, return by value
+   static vector cross(const vector& m, const vector& n);
 
    template <typename T>
    static bool isEq(T m, T n);
