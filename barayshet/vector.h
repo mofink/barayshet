@@ -5,7 +5,7 @@ class vector : public tuple
 {
 public:
 
-   vector(float x, float y, float z);
+   vector(const float x, const float y, const float z);
    
    virtual ~vector();
 };

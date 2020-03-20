@@ -2,7 +2,7 @@
 
 
 
-vector::vector(float x, float y, float z)
+vector::vector(const float x, const float y, const float z)
    : tuple(x, y, z, 0.0)
 {
 }

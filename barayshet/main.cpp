@@ -14,8 +14,9 @@ int main()
 {
    point a1 = { 3, 2, 1 };
    point a2 = { 5, 6, 7 };
-
-   util::subtract(a1, a2).print();
+   a2.setX(1);
+   a2.setY(1);
+   util::negate(a2).print();
    getchar();
    return 0;
 }

@@ -3,7 +3,7 @@
 
 #include "tuple.h"
 
-tuple::tuple(float x, float y, float z, float w)
+tuple::tuple(const float x, const float y, const float z, const float w)
    : x(x)
    , y(y)
    , z(z)
@@ -21,9 +21,19 @@ float tuple::getX()
    return x;
 }
 
+void tuple::setX(const float a)
+{
+   x = a;
+}
+
 float tuple::getY()
 {
    return y;
+}
+
+void tuple::setY(const float a)
+{
+   y = a;
 }
 
 float tuple::getZ()
@@ -31,9 +41,19 @@ float tuple::getZ()
    return z;
 }
 
+void tuple::setZ(const float a)
+{
+   z = a;
+}
+
 float tuple::getW()
 {
    return w;
+}
+
+void tuple::setW(const float a)
+{
+   w = a;
 }
 
 void tuple::print()

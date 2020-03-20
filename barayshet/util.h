@@ -12,6 +12,10 @@ public:
    //replace these with a lambda
    static tuple add(tuple m, tuple n);
    static tuple subtract(tuple m, tuple n);
+   static tuple negate(tuple m);
+
+   static tuple operator*(const float a, tuple& m);
+   static tuple operator*(const float a, tuple& m);
 
    template <typename T>
    static bool isEq(T m, T n);

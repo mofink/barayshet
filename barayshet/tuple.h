@@ -7,15 +7,21 @@
 class tuple
 {
 public:
-   tuple(float x, float y, float z, float w);
+   tuple(const float x, const float y, const float z, const float w);
    virtual ~tuple();
 
-   virtual float getX();
-   virtual float getY();
-   virtual float getZ();
-   virtual float getW();
-
+   float getX();
+   void setX(const float a);
+   float getY();
+   void setY(const float a);
+   float getZ();
+   void setZ(const float a);
+   float getW();
+   void setW(const float a);
+   
    virtual void print();
+
+   
 
 
 private:

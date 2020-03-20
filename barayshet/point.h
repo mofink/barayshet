@@ -4,7 +4,7 @@
 class point : public tuple
 {
 public:
-   point(float x, float y, float z);
+   point(const float x, const float y, const float z);
    virtual ~point();
 
 private:
