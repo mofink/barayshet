@@ -12,11 +12,8 @@ bool isEq(float a, float b)
 
 int main()
 {
-   point a1 = { 3, 2, 1 };
-   point a2 = { 5, 6, 7 };
-   a2.setX(1);
-   a2.setY(1);
-   util::negate(a2).print();
+   point a1 = { 1, -2, 3};
+   std::cout << util::magnitude(a1) << std::endl;
    getchar();
    return 0;
 }

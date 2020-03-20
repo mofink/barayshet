@@ -10,16 +10,16 @@ public:
    tuple(const float x, const float y, const float z, const float w);
    virtual ~tuple();
 
-   float getX();
+   float getX() const;
    void setX(const float a);
-   float getY();
+   float getY() const;
    void setY(const float a);
-   float getZ();
+   float getZ() const;
    void setZ(const float a);
-   float getW();
+   float getW() const;
    void setW(const float a);
    
-   virtual void print();
+   virtual void print() const;
 
    
 
