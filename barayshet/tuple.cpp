@@ -74,3 +74,45 @@ void tuple::print() const
    }
    std::cout << str << ": " << getX() << " " << getY() << " " << getZ() << std::endl;
 }
+
+
+tuple tuple::add(tuple& m, tuple& n)
+{
+   return tuple(m.getX() + n.getX()
+      , m.getY() + n.getY()
+      , m.getZ() + n.getZ()
+      , m.getW() + n.getW());
+}
+
+tuple tuple::subtract(tuple& m, tuple& n)
+{
+   return tuple(m.getX() - n.getX()
+      , m.getY() - n.getY()
+      , m.getZ() - n.getZ()
+      , m.getW() - n.getW());
+}
+
+tuple tuple::negate(tuple& m)
+{
+   return tuple(-m.getX()
+       , -m.getY()
+       , -m.getZ()
+       , -m.getW());
+}
+
+tuple tuple::scale(const float a, tuple& m)
+{
+   return tuple(a*m.getX()
+              , a*m.getY()
+              , a*m.getZ()
+              , a*m.getW());
+}
+
+tuple tuple::scale(tuple& m, const float a)
+{
+   return tuple(a*m.getX()
+      , a*m.getY()
+      , a*m.getZ()
+      , a*m.getW());
+}
+

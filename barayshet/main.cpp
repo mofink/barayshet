@@ -3,6 +3,7 @@
 #include "vector.h"
 #include "point.h"
 #include "util.h"
+#include "color.h"
 
 
 bool isEq(float a, float b)
@@ -12,9 +13,9 @@ bool isEq(float a, float b)
 
 int main()
 {
-   vector a1 = { 1, 2, 3};
-   vector a2 = { 2, 3, 4 };
-   util::cross(a2,a1).print();
+   color a1 = { 1.0f, 0.2f, 0.4f};
+   color a2 = { 0.9f, 1.0f, 0.1f};
+   color::blend(a1, a2).print();
    getchar();
    return 0;
 }
