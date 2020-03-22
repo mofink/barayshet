@@ -4,6 +4,7 @@
 #include "point.h"
 #include "util.h"
 #include "color.h"
+#include "canvas.h"
 
 
 bool isEq(float a, float b)
@@ -13,6 +14,8 @@ bool isEq(float a, float b)
 
 int main()
 {
+   canvas c(100, 100);
+   canvas::canvasToPPM(c);
    color a1 = { 1.0f, 0.2f, 0.4f};
    color a2 = { 0.9f, 1.0f, 0.1f};
    color::blend(a1, a2).print();

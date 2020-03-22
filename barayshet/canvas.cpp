@@ -1,6 +1,5 @@
 #include "canvas.h"
-
-#include <sstream>
+#include <fstream>
 
 
 canvas::canvas(int x, int y)
@@ -9,7 +8,6 @@ canvas::canvas(int x, int y)
 {
 
 }
-
 
 canvas::~canvas()
 {
@@ -25,12 +23,20 @@ int canvas::getHeight()
    return height;
 }
 
-void canvas::writePixel(canvas c, int x, int y, color col)
-{
 
+std::stringstream canvas::createHeader(canvas c)
+{
+   std::stringstream ss;
+   ss << "P3\n" << c.getWidth() << " " << c.getHeight() << "\n255\n";
+   return ss;
 }
 
-std::string canvas::canvasToPPM(canvas c)
+void canvas::writePixel(std::stringstream& ss, int x, int y, color col)
+{
+   ss << col.getRed() << col.getGreen() << col.getBlue() << " ";
+}
+
+void canvas::canvasToPPM(canvas c)
 {
    /*PPM File Format
    """
@@ -40,8 +46,21 @@ std::string canvas::canvasToPPM(canvas c)
       RGB RGB RGB... --RGB for each pixel
    """
    */
+   std::stringstream ss = createHeader(c);
+   
+   for (int i = 0; i < c.getHeight(); ++i)
+   {
+      for (int j = 0; j < c.getWidth(); ++j)
+      {
+         writePixel(ss, i, j, color(0, 0, 0));
+      }
+      ss << "\n";
+   }
+   
+   std::ofstream myFile;
+   myFile.open("output.ppm");
+   myFile << ss.str();
+   myFile.close();
 
-   std::stringstream ss;
-   ss << "P3\n" + c.getWidth() << " " << c.getHeight() << "\n255";
-   return ss.str();
 }
+

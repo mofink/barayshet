@@ -1,6 +1,7 @@
 #pragma once
 #include "color.h"
 #include <string>
+#include <sstream>
 
 class canvas
 {
@@ -11,8 +12,10 @@ public:
    int getWidth();
    int getHeight();
 
-   static void writePixel(canvas c, int x, int y, color col);
-   static std::string canvasToPPM(canvas c);
+   static std::stringstream createHeader(canvas c);
+   static void writePixel(std::stringstream& ss, int x, int y, color col);
+   
+   static void canvasToPPM(canvas c);
 
 private:
    int width;
