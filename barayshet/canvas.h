@@ -2,6 +2,7 @@
 #include "color.h"
 #include <string>
 #include <sstream>
+#include <vector>
 
 class canvas
 {
@@ -11,14 +12,20 @@ public:
 
    int getWidth();
    int getHeight();
-
-   static std::stringstream createHeader(canvas c);
-   static void writePixel(std::stringstream& ss, int x, int y, color col);
+   std::vector<std::string> getData();
    
-   static void canvasToPPM(canvas c);
+   //get self
+   canvas* getCanvas();
+
+
+   std::stringstream createHeader(canvas* c);
+   void writePixel(std::vector<std::string>& data, int x, int y, color col);
+   
+   void canvasToPPM();
 
 private:
    int width;
    int height;
+   std::vector<std::string> myData;
 };
 

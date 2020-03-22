@@ -6,7 +6,17 @@ canvas::canvas(int x, int y)
    : width(x)
    , height(y)
 {
-
+   //initialize image data
+   std::vector<std::string> data;
+   for (int i = 0; i < getHeight(); ++i)
+   {
+      for (int j = 0; j < getWidth(); ++j)
+      {
+         data.push_back("100");
+      }
+      //data.push_back("\n");
+   }
+   myData = data;
 }
 
 canvas::~canvas()
@@ -24,19 +34,32 @@ int canvas::getHeight()
 }
 
 
-std::stringstream canvas::createHeader(canvas c)
+std::vector<std::string> canvas::getData()
+{
+   return myData;
+}
+
+canvas* canvas::getCanvas()
+{
+   return this;
+}
+
+std::stringstream canvas::createHeader(canvas* c)
 {
    std::stringstream ss;
-   ss << "P3\n" << c.getWidth() << " " << c.getHeight() << "\n255\n";
+   ss << "P3\n" << c->getWidth() << " " << c->getHeight() << "\n255\n";
    return ss;
 }
 
-void canvas::writePixel(std::stringstream& ss, int x, int y, color col)
+void canvas::writePixel(std::vector<std::string>& data, int x, int y, color col)
 {
+   std::stringstream ss;
    ss << col.getRed() << col.getGreen() << col.getBlue() << " ";
+   //data is stored in width height order for PPM
+   data[y*getWidth() + x] = ss.str();
 }
 
-void canvas::canvasToPPM(canvas c)
+void canvas::canvasToPPM()
 {
    /*PPM File Format 
    """
@@ -46,20 +69,32 @@ void canvas::canvasToPPM(canvas c)
       RGB RGB RGB... --RGB for each pixel
    """
    */
-   std::stringstream ss = createHeader(c);
+
+   canvas* c = getCanvas();
    
-   for (int i = 0; i < c.getHeight(); ++i)
-   {
-      for (int j = 0; j < c.getWidth(); ++j)
-      {
-         writePixel(ss, i, j, color(0, 0, 0));
-      }
-      ss << "\n";
-   }
-   
+   //open new file to output to
    std::ofstream myFile;
-   myFile.open("output.ppm");
-   myFile << ss.str();
+   myFile.open("image.ppm");
+
+   //add PPM file header
+   std::stringstream ss = createHeader(c);
+   myFile << ss.rdbuf();
+
+   //add pixel data
+   std::vector<std::string> data = c->getData();
+   int i = 0;
+   for (std::string e : data)
+   {
+      ++i;
+      myFile << e << " ";
+      if (i == c->getWidth())
+      {
+         myFile << "\n";
+         i = 0;
+      }
+   }
+
+   //all done
    myFile.close();
 
 }
