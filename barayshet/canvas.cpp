@@ -38,7 +38,7 @@ void canvas::writePixel(std::stringstream& ss, int x, int y, color col)
 
 void canvas::canvasToPPM(canvas c)
 {
-   /*PPM File Format
+   /*PPM File Format 
    """
       P3  --PPM formate
       x y --width, height of canvas
