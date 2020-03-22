@@ -44,19 +44,19 @@ canvas* canvas::getCanvas()
    return this;
 }
 
-std::stringstream canvas::createHeader(canvas* c)
+std::stringstream canvas::createHeader()
 {
    std::stringstream ss;
-   ss << "P3\n" << c->getWidth() << " " << c->getHeight() << "\n255\n";
+   ss << "P3\n" << getWidth() << " " << getHeight() << "\n255\n";
    return ss;
 }
 
-void canvas::writePixel(std::vector<std::string>& data, int x, int y, color col)
-{
+void canvas::writePixel(int x, int y, color pixel)
+{ 
    std::stringstream ss;
-   ss << col.getRed() << col.getGreen() << col.getBlue() << " ";
+   ss << pixel.getRed() << pixel.getGreen() << pixel.getBlue();
    //data is stored in width height order for PPM
-   data[y*getWidth() + x] = ss.str();
+   myData[y*getWidth() + x] = ss.str();
 }
 
 void canvas::canvasToPPM()
@@ -69,25 +69,22 @@ void canvas::canvasToPPM()
       RGB RGB RGB... --RGB for each pixel
    """
    */
-
-   canvas* c = getCanvas();
    
    //open new file to output to
    std::ofstream myFile;
    myFile.open("image.ppm");
 
    //add PPM file header
-   std::stringstream ss = createHeader(c);
+   std::stringstream ss = createHeader();
    myFile << ss.rdbuf();
 
    //add pixel data
-   std::vector<std::string> data = c->getData();
    int i = 0;
-   for (std::string e : data)
+   for (std::string e : myData)
    {
       ++i;
       myFile << e << " ";
-      if (i == c->getWidth())
+      if (i == getWidth())
       {
          myFile << "\n";
          i = 0;

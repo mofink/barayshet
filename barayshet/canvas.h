@@ -17,9 +17,11 @@ public:
    //get self
    canvas* getCanvas();
 
+   //In C++11 we can move a stringstream
+   std::stringstream createHeader();
 
-   std::stringstream createHeader(canvas* c);
-   void writePixel(std::vector<std::string>& data, int x, int y, color col);
+   //write in column-row order
+   void writePixel(int x, int y, color col);
    
    void canvasToPPM();
 
