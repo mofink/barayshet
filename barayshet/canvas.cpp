@@ -12,7 +12,7 @@ canvas::canvas(int x, int y)
    {
       for (int j = 0; j < getWidth(); ++j)
       {
-         data.push_back("100");
+         data.push_back("0 0 0");
       }
       //data.push_back("\n");
    }
@@ -54,7 +54,8 @@ std::stringstream canvas::createHeader()
 void canvas::writePixel(int x, int y, color pixel)
 { 
    std::stringstream ss;
-   ss << pixel.getRed() << pixel.getGreen() << pixel.getBlue();
+   pixel.clampColor();
+   ss << pixel.getRed() << " " << pixel.getGreen() << " " << pixel.getBlue();
    //data is stored in width height order for PPM
    myData[y*getWidth() + x] = ss.str();
 }
